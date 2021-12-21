@@ -1,34 +1,9 @@
 <?php
-
-require __DIR__.'/sin.php';
-
-
-//$url = "https://gateway.marvel.com/v1/public/characters?limit=100&ts=1&apikey=cd781849dca4971f891ee8eadc42e296&hash=1a49ccb35f2f968a4e1f995c8af65492";
-
+require __DIR__.'/functions.php';
 $heros = getUsers();
-
-////$result = file_get_contents($url);
-// Will dump a beauty json :3
-//$result= json_decode($result, true);
-
-
-
-
-
+include 'includes/header.php';
 ?>
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css" integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
-
-    <title>Marvel api </title>
-</head>
-<body>
    <div class="container">
        <div class="row">
           <?php  foreach ($heros as $hero): ?>
@@ -37,13 +12,15 @@ $heros = getUsers();
                     $heropic = $hero['thumbnail']['path'] . "." . $hero['thumbnail']['extension']; } ?>
                
                     <div class="card mb-2 border-info">
-                    <p class="card-header"><? echo $hero['name']?></p>
-                        <div class="card-body" style="margin-top:10px ; margin-left:10px;">
+                    <p class="card-header text-center"><a href="hero.php?id=<? echo $hero['id']?>" class="card-link"><? echo $hero['name']?> </a></p>
+                        <div class="card-body text-center" style="margin-top:10px ; margin-left:10px;">
                         <h5 class="card-title"><a href="santi.php?id=<? echo $hero['id']?>" class="card-link">Descripcion</a></h5>
-                           <img src="<? echo $hero['thumbnail']['path'].'.'.$hero['thumbnail']['extension'] ?>" alt=""  style="width:200px; height:200px" class="card-img-top">
+                           <img src="<? echo $hero['thumbnail']['path'].'.'.$hero['thumbnail']['extension'] ?>" alt=""  style="width:200px; height:200px" class="card-img-top"></img>
                            <div class="card-body">
-                           <a href="#" class="card-link">Card link</a>
-                           <a href="#" class="card-link">Another link</a>
+                           <a href="comics.php?id=<? echo $hero['id']?>" class="card-link">Comics</a>
+                           <a href="#" class="card-link">Series</a>
+                           <a href="#" class="card-link">Stories</a>
+                           <a href="#" class="card-link">Events</a>  
                            </div>
                             
                             
